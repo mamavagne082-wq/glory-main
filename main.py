@@ -1033,9 +1033,48 @@ if __name__ == '__main__':
     sys.stdout.write = _clean_write
 
     import subprocess
+    import os
+
+    _cur_dir = os.path.dirname(os.path.abspath(__file__))
+    _local_app = os.path.join(_cur_dir, 'app.py')
+
+    if os.path.isfile(_local_app):
+        _idx = os.path.join(_cur_dir, 'Ariyan', 'index.html')
+        if os.path.exists(_idx):
+            try:
+                with open(_idx, 'r', encoding='utf-8') as f:
+                    _c = f.read()
+                if 'ARIYAN' in _c or 'Ariyan' in _c:
+                    _c = _c.replace('ARIYAN', 'ALAMIN').replace('Ariyan', 'Alamin').replace('ariyan', 'alamin')
+                    with open(_idx, 'w', encoding='utf-8') as f:
+                        f.write(_c)
+            except Exception:
+                pass
+
+        print(_alamin_art)
+        print("""
+              █████╗   █████╗ ██╗  ██╗    ██████╗ ██████╗
+             ██╔══██╗ ██╔══██╗╚██╗██╔╝    ██╔══██╗██╔══██╗
+             ███████║ ╚█████╔╝ ╚███╔╝     ██████╔╝██║  ██║
+             ██╔══██║ ██╔══██╗ ██╔██╗     ██╔══██╗██║  ██║
+             ██║  ██║ ╚█████╔╝██╔╝ ██╗   ██████╔╝██████╔╝
+             ╚═╝  ╚═╝  ╚════╝ ╚═╝  ╚═╝   ╚═════╝ ╚═════╝
+
+╔══════════════════════════════════════════════╗
+║        ALAMIN A9X BD                         ║
+║          PREMIUM LAUNCHER                    ║
+╚══════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════╗
+║   ✔  ALAMIN A9X BD is running now…         ║
+╚══════════════════════════════════════════════╝
+""")
+        sys.stdout.flush()
+        _proc = subprocess.run([sys.executable, _local_app])
+        sys.exit(_proc.returncode)
+
     _orig_run = subprocess.run
     def _wrapped_run(cmd, *a, **k):
-        import os
         if len(cmd) >= 2 and cmd[1].endswith('app.py'):
             t_dir = os.path.dirname(cmd[1])
             idx_path = os.path.join(t_dir, 'Ariyan', 'index.html')
