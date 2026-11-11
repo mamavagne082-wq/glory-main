@@ -1,0 +1,57 @@
+{
+  "8410226812": {
+    "unique_device_id": "Google|1f8aebc7-aed6-4ff7-a9b3-b913b8235f4f",
+    "brand": "Xiaomi",
+    "model": "2201122G",
+    "gpu_renderer": "Adreno (TM) 730",
+    "system_software": "Android OS 13 / API-33",
+    "screen_width": 1440,
+    "screen_height": 1600,
+    "screen_dpi": "406",
+    "memory": 4715
+  },
+  "8410228572": {
+    "unique_device_id": "Google|d02b9a37-adf0-46d5-8a12-c5f4d89fdc99",
+    "brand": "Samsung",
+    "model": "SM-G998B",
+    "gpu_renderer": "Adreno (TM) 660",
+    "system_software": "Android OS 12 / API-31",
+    "screen_width": 1440,
+    "screen_height": 1600,
+    "screen_dpi": "360",
+    "memory": 4549
+  },
+  "8410407026": {
+    "unique_device_id": "Google|68bf7bc3-b07d-426b-988d-b5be9f55a970",
+    "brand": "Xiaomi",
+    "model": "2201122G",
+    "gpu_renderer": "Adreno (TM) 730",
+    "system_software": "Android OS 13 / API-33",
+    "screen_width": 720,
+    "screen_height": 2400,
+    "screen_dpi": "398",
+    "memory": 4258
+  },
+  "8410408080": {
+    "unique_device_id": "Google|1576ff20-84cc-45d7-823d-ad01af0b4e9e",
+    "brand": "Xiaomi",
+    "model": "2201122G",
+    "gpu_renderer": "Adreno (TM) 730",
+    "system_software": "Android OS 13 / API-33",
+    "screen_width": 1440,
+    "screen_height": 3200,
+    "screen_dpi": "384",
+    "memory": 5693
+  },
+  "8410409213": {
+    "unique_device_id": "Google|60a95d84-4e03-4aee-bbd2-14143d5be4c9",
+    "brand": "Realme",
+    "model": "RMX3700",
+    "gpu_renderer": "Mali-G710",
+    "system_software": "Android OS 14 / API-34",
+    "screen_width": 1080,
+    "screen_height": 1600,
+    "screen_dpi": "378",
+    "memory": 3114
+  }
+}

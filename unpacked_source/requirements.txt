@@ -1,0 +1,7 @@
+httpx
+aiohttp
+requests
+pycryptodome
+protobuf>=6.30.0
+protobuf-decoder
+google-play-scraper
