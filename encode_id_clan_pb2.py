@@ -1,3 +1,10 @@
+# All rights reserved.
+#
+"""RAFIN TxT — encode_id_clan Protocol Buffer Module.
+
+Premium Edition — auto-generated protocol buffer code.
+Source: encode_id_clan.proto
+"""
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import symbol_database as _symbol_database
@@ -13,3 +20,4 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_MYDATA']._serialized_start=24
   _globals['_MYDATA']._serialized_end=64
+# @@protoc_insertion_point(module_scope)

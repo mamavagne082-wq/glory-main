@@ -2,9 +2,10 @@ httpx
 aiohttp
 requests
 pycryptodome
-protobuf>=6.30.0
+protobuf>=4.21.0
 protobuf-decoder
 google-play-scraper
 websockets
 yarl
 pyzipper
+Flask
