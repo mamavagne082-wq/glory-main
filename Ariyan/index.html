@@ -825,7 +825,7 @@ function renderLogs(logs){
     <div class="vault-line">
       <span class="line-time">[${esc(l.time || '00:00:00')}]</span>
       <span class="line-msg ${esc(l.level || 'info')}">&gt; ${esc(l.message || '')}</span>
-    </div>`).join("") : `<div style="color:var(--text-muted); padding:10px;">No logs recorded.</div>`;
+    </div>`).join("") : `<div class="no-logs-msg">No logs recorded.</div>`;
 
   if(autoScroll) scrollTerminal();
 }

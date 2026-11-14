@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#030712">
 <title>ALAMIN | Apex Glory Command Core</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,6 +78,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
 /* HEADER */
 .cmd-header {
   padding: 10px 14px; background: rgba(8, 12, 22, 0.92);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px); border-bottom: 1px solid var(--panel-border);
   display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
 }
@@ -114,6 +115,18 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
   flex: 1; overflow-y: auto; overflow-x: hidden;
   padding: 14px; scrollbar-width: thin;
 }
+.cmd-viewport::-webkit-scrollbar { width: 6px; }
+.cmd-viewport::-webkit-scrollbar-thumb { background: rgba(0, 242, 254, 0.2); border-radius: 4px; }
+.tag-live { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+.flex-row-gap-6 { display: flex; gap: 6px; }
+.grid-status-box { grid-column: 1 / -1; text-align: center; padding: 30px; color: var(--text-muted); }
+.hidden-box { display: none; text-align: center; padding: 30px; color: var(--text-muted); }
+.dev-brand-highlight { color: var(--neon-cyan); }
+.field-hidden { display: none; }
+.no-margin-bottom { margin-bottom: 0; }
+.btn-danger-outline { border-color: var(--neon-red) !important; color: var(--neon-red) !important; }
+.min-width-0 { min-width: 0; }
+.no-logs-msg { color: var(--text-muted); padding: 10px; }
 .page-view { display: none; max-width: 1200px; margin: 0 auto; }
 .page-view.active { display: block; animation: fadeIn 0.25s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
@@ -140,7 +153,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
 }
 .cyber-card {
   background: var(--panel); border: 1px solid var(--panel-border);
-  border-radius: 14px; padding: 12px 14px; backdrop-filter: blur(12px);
+  border-radius: 14px; padding: 12px 14px; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   position: relative; overflow: hidden;
 }
 .cyber-card.full-width { grid-column: 1 / -1; }
@@ -176,7 +189,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
 .cyber-pill-btn.active { background: rgba(0, 242, 254, 0.15); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 254, 0.3); font-weight: 700; }
 
 .bot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 12px; }
-.bot-hud { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px; padding: 14px; backdrop-filter: blur(14px); }
+.bot-hud { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px; padding: 14px; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 .bot-hud-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
 .bot-profile { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .bot-avatar-ring { position: relative; width: 46px; height: 46px; flex-shrink: 0; display: grid; place-items: center; }
@@ -223,7 +236,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
 .line-msg.error { color: var(--neon-red); }
 
 /* ================= MODALS ================= */
-.cyber-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 14px; background: rgba(2, 4, 10, 0.85); backdrop-filter: blur(10px); opacity: 0; visibility: hidden; transition: 0.25s; }
+.cyber-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 14px; background: rgba(2, 4, 10, 0.85); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; visibility: hidden; transition: 0.25s; }
 .cyber-modal.active { opacity: 1; visibility: visible; }
 .modal-pod { width: 100%; max-width: 420px; background: #070c18; border: 1px solid var(--panel-border); border-radius: 18px; padding: 20px; position: relative; }
 .modal-pod h2 { font-family: var(--font-hud); font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
@@ -360,7 +373,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
       <div class="dist-hud">
         <div class="dist-hud-head">
           <h3>FLEET STATUS RATIO</h3>
-          <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted);">LIVE</span>
+          <span class="tag-live">LIVE</span>
         </div>
         <div class="cyber-meter" id="distMeter"></div>
         <div class="dist-legend">
@@ -379,7 +392,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
           <h2>BOT FLEET</h2>
           <p>Operate and orchestrate bots</p>
         </div>
-        <div style="display:flex; gap:6px;">
+        <div class="flex-row-gap-6">
           <button class="btn-cyber" id="btnPauseAll"><i class="fa-solid fa-pause"></i> PAUSE ALL</button>
           <button class="btn-cyber primary" onclick="openModal('addModal')"><i class="fa-solid fa-plus"></i> ADD</button>
         </div>
@@ -399,11 +412,11 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
       </div>
 
       <div class="bot-grid" id="accountsGrid">
-        <div style="grid-column:1/-1; text-align:center; padding:30px; color:var(--text-muted);">
+        <div class="grid-status-box">
           <i class="fa-solid fa-circle-notch fa-spin"></i> Connecting to Backend...
         </div>
       </div>
-      <div id="noFilterMatch" style="display:none; text-align:center; padding:30px; color:var(--text-muted);">
+      <div id="noFilterMatch" class="hidden-box">
         No bots matching filter.
       </div>
     </section>
@@ -415,7 +428,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
           <h2>LIVE CONSOLE</h2>
           <p>Kernel telemetry stream</p>
         </div>
-        <div style="display:flex; gap:6px;">
+        <div class="flex-row-gap-6">
           <button class="btn-cyber" id="btnAutoscroll"><i class="fa-solid fa-arrow-down"></i> SCROLL</button>
           <button class="btn-cyber" id="btnClearLogs"><i class="fa-solid fa-trash"></i> CLEAR</button>
         </div>
@@ -442,7 +455,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
 
   <!-- FOOTER -->
   <footer class="cmd-footer">
-    <div>DEV: <b style="color:var(--neon-cyan);">ALAMIN</b></div>
+    <div>DEV: <b class="dev-brand-highlight">ALAMIN</b></div>
     <div>
       <a href="https://youtube.com/@your-crsh-alamin-9x-top-bd?si=k-3ZDTYNvL3cI5uV" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a> &nbsp;|&nbsp;
       <a href="https://t.me/Alamin_world_A9x" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Telegram</a>
@@ -477,7 +490,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
         </div>
       </div>
 
-      <div id="tokenFields" style="display:none;">
+      <div id="tokenFields" class="field-hidden">
         <div class="form-field">
           <label>ACCESS TOKEN</label>
           <textarea id="accToken" placeholder="Paste full token here..."></textarea>
@@ -553,10 +566,10 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
 <div class="cyber-modal" id="confirmModal">
   <div class="modal-pod">
     <h2>CONFIRM</h2>
-    <p class="sub" id="confirmMsg" style="margin-bottom:0;"></p>
+    <p class="sub no-margin-bottom" id="confirmMsg"></p>
     <div class="modal-actions">
       <button type="button" class="btn-cyber" id="confirmNo">CANCEL</button>
-      <button type="button" class="btn-cyber" style="border-color:var(--neon-red); color:var(--neon-red);" id="confirmYes"><i class="fa-solid fa-trash"></i> DELETE</button>
+      <button type="button" class="btn-cyber btn-danger-outline" id="confirmYes"><i class="fa-solid fa-trash"></i> DELETE</button>
     </div>
   </div>
 </div>
@@ -700,7 +713,7 @@ function renderAccounts(accounts){
   renderDistribution(cats);
 
   if(!accounts.length){
-    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:var(--text-muted);"><i class="fa-solid fa-ghost"></i><br>No bots in matrix.</div>`;
+    grid.innerHTML = `<div class="grid-status-box"><i class="fa-solid fa-ghost"></i><br>No bots in matrix.</div>`;
     return;
   }
 
@@ -737,7 +750,7 @@ function renderAccounts(accounts){
             <div class="bot-avatar-inner"><i class="fa-solid fa-gamepad"></i></div>
             <span class="bot-lvl-chip">L${lvl}</span>
           </div>
-          <div style="min-width:0;">
+          <div class="min-width-0">
             <div class="bot-name-row">
               <span class="bot-nick">${esc(acc.nickname || "Bot")}</span>
               <span class="bot-reg">${esc(acc.region || "BD")}</span>
@@ -812,7 +825,7 @@ function renderLogs(logs){
     <div class="vault-line">
       <span class="line-time">[${esc(l.time || '00:00:00')}]</span>
       <span class="line-msg ${esc(l.level || 'info')}">&gt; ${esc(l.message || '')}</span>
-    </div>`).join("") : `<div style="color:var(--text-muted); padding:10px;">No logs recorded.</div>`;
+    </div>`).join("") : `<div class="no-logs-msg">No logs recorded.</div>`;
 
   if(autoScroll) scrollTerminal();
 }
