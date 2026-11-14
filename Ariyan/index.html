@@ -485,8 +485,8 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
         </div>
         <div class="form-field">
           <label>PASSWORD / KEY</label>
-          <!-- DEFAULT PASSWORD ALAMIN -->
-          <input type="password" id="accPass" value="ALAMIN" placeholder="ALAMIN">
+          <!-- DEFAULT PASSWORD ARIYAN -->
+          <input type="password" id="accPass" value="ARIYAN" placeholder="ARIYAN">
         </div>
       </div>
 
@@ -549,8 +549,8 @@ html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-d
         </div>
         <div class="form-field">
           <label>PASSWORD</label>
-          <!-- DEFAULT PASSWORD ALAMIN -->
-          <input type="text" id="teamPass" value="ALAMIN">
+          <!-- DEFAULT PASSWORD ARIYAN -->
+          <input type="text" id="teamPass" value="ARIYAN">
         </div>
       </div>
 
@@ -941,7 +941,7 @@ $("addForm").addEventListener("submit", async e => {
   e.preventDefault();
   let payload = {};
   if($("accType").value === "guest"){
-    const uid = $("accUid").value.trim(), password = $("accPass").value.trim() || "ALAMIN";
+    const uid = $("accUid").value.trim(), password = $("accPass").value.trim() || "ARIYAN";
     if(!uid) return toast("UID required", "error");
     payload = {uid, password};
   } else {
@@ -956,7 +956,7 @@ $("addForm").addEventListener("submit", async e => {
     if(res.status === "ok"){
       closeModal("addModal");
       $("addForm").reset();
-      $("accPass").value = "ALAMIN"; // reset to ALAMIN
+      $("accPass").value = "ARIYAN"; // reset to ARIYAN
       toast("Bot added", "success");
       fetchTelemetry();
     } else toast(res.error || "Failed", "error");
@@ -969,7 +969,7 @@ $("teamForm").addEventListener("submit", async e => {
   const region = $("teamRegion").value;
   const clan_id = $("teamClan").value.trim();
   const count = parseInt($("teamCount").value, 10);
-  const password = $("teamPass").value.trim() || "ALAMIN";
+  const password = $("teamPass").value.trim() || "ARIYAN";
 
   if(!clan_id) return toast("Clan ID required", "error");
 

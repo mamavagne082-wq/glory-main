@@ -4,8 +4,10 @@ ALAMIN A9X BD — Free Fire Squad Bot Launcher
 100% Working Fix Integration:
  - Homer RUDP + Protobuf Decoders
  - Bulletproof MajorLogin JWT & AES Key/IV Recovery
+ - Multi-Password Access Token Grant (ARIYAN / Custom)
  - Graceful Clan Level Requirement Handling
  - Web Dashboard with Automatic Port Conflict Resolution
+ - 100% ALAMIN Visual UI & Dashboard Branding
 """
 
 import sys
@@ -50,18 +52,7 @@ if sys.version_info < (3, 14):
             pass
 
 # ----------------------------------------------------------------------
-# 2. Output Filter: Ensure 100% ALAMIN Branding Everywhere
-# ----------------------------------------------------------------------
-_orig_stdout_write = sys.stdout.write
-def _clean_write(s):
-    if isinstance(s, str):
-        s = s.replace("ARIYAN", "ALAMIN").replace("Ariyan", "Alamin").replace("ariyan", "alamin")
-        s = s.replace("RAFIN TxT", "ALAMIN A9X").replace("RAFIN  X  MEHEDI", "ALAMIN A9X BD")
-    return _orig_stdout_write(s)
-sys.stdout.write = _clean_write
-
-# ----------------------------------------------------------------------
-# 3. Environment & Automatic Port Freeing (Prevents Errno 10048)
+# 2. Environment & Automatic Port Freeing (Prevents Errno 10048)
 # ----------------------------------------------------------------------
 _PORT = int(os.environ.get("PORT", os.environ.get("WEB_PORT", 25567)))
 _HOST = "0.0.0.0"
@@ -120,7 +111,7 @@ if os.path.exists(_idx_src):
                 pass
 
 # ----------------------------------------------------------------------
-# 4. Import Core Bot Engine & Apply Bulletproof Protocols
+# 3. Import Core Bot Engine & Apply Bulletproof Protocols
 # ----------------------------------------------------------------------
 import main1
 
@@ -130,7 +121,33 @@ main1.INDEX_HTML_PATH = os.path.join(_CUR_DIR, "index.html")
 main1.ACCOUNTS_FILE = _acc_file
 
 # ======================================================================
-# 4A. Bulletproof MajorLogin Protocol Handler
+# 3A. Bulletproof Token Grant Handler (Supports both ARIYAN and custom passwords)
+# ======================================================================
+_orig_get_access_token = main1.get_access_token
+
+async def _patched_get_access_token(uid, password):
+    """
+    Tries the provided password, and if auth_error occurs, automatically
+    tries ARIYAN so existing bots and guest accounts never fail authentication.
+    """
+    candidates = [password]
+    for alt in ("ARIYAN", "ALAMIN", "BRX771", "ariyan", "alamin"):
+        if alt not in candidates:
+            candidates.append(alt)
+
+    for pwd in candidates:
+        try:
+            res = await _orig_get_access_token(uid, pwd)
+            if res and res[0] and res[1]:
+                return res
+        except Exception:
+            pass
+    return None
+
+main1.get_access_token = _patched_get_access_token
+
+# ======================================================================
+# 3B. Bulletproof MajorLogin Protocol Handler
 # ======================================================================
 def _deep_search_jwt(d):
     """Recursively search any dictionary structure for JWT token."""
@@ -309,7 +326,7 @@ async def _patched_major_login(payload, login_url, release_version):
 main1.major_login = _patched_major_login
 
 # ======================================================================
-# 4B. Bulletproof Key & IV Extraction
+# 3C. Bulletproof Key & IV Extraction
 # ======================================================================
 _orig_extract_key_iv = main1._extract_key_iv
 
@@ -371,7 +388,7 @@ def _patched_extract_key_iv(res_json):
 main1._extract_key_iv = _patched_extract_key_iv
 
 # ======================================================================
-# 4C. Robust Clan Join Protocol (Handles Level Requirements & Current Version)
+# 3D. Robust Clan Join Protocol (Handles Level Requirements & Current Version)
 # ======================================================================
 async def _patched_join_clan(jwt_token, clan_id):
     """
@@ -429,7 +446,7 @@ async def _patched_join_clan(jwt_token, clan_id):
 main1.join_clan = _patched_join_clan
 
 # ======================================================================
-# 4D. Custom Terminal Banner
+# 3E. Custom Terminal Banner (ALAMIN A9X)
 # ======================================================================
 def _custom_banner():
     print(r"""
@@ -453,7 +470,7 @@ def _custom_banner():
 main1.print_banner = _custom_banner
 
 # ----------------------------------------------------------------------
-# 5. Main Execution
+# 4. Main Execution
 # ----------------------------------------------------------------------
 if __name__ == "__main__":
     try:
